@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# A function that displays all the listening ports
+
+netstat -l --program
