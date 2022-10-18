@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# This transfer a file from our client to a server
+# scp must transfer the file to the user home directory ~/
+
+file_path="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+file_name=$(basename "$BASH_SOURCE")
+
+file="$1"
+ip="$2"
+user="$3"
+key="$4"
+
+if [ $# -lt 4 ]; then
+	echo -e "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+else
+	scp -i "$key" -o StrictHostKeyChecking=no "$file_path"/"$file" "$user"@"ip":/home/"$user"/
+fi
