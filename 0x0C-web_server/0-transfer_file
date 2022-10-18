@@ -4,14 +4,15 @@
 
 file_path="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 file_name=$(basename "$BASH_SOURCE")
-
+brown='\e[0;33m'
+reset='\033[0m'
 file="$1"
 ip="$2"
 user="$3"
 key="$4"
 
-if [ $# -lt 4 ]; then
-	echo -e "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+if [ $# -ne 4 ]; then
+	echo -e "Usage: ${brown}$file_name PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY${reset}"
 else
 	scp -i "$key" -o StrictHostKeyChecking=no "$file_path"/"$file" "$user"@"ip":/home/"$user"/
 fi
