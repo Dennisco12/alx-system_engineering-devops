@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#This configures the Nginx server so that /redirect_me is redirecting
+#+ to another page
+
+apt-get update -y -qq && \
+	apt-get install nginx -y
+
+service nginx start
+ufw allow 'Nginx HTTP'
+
+cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
+
+echo -e "Hello World!" > /var/www/html/index.nginx-debian.html
+
+sed -i '24i\	rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGU1wu4 permanent;' /etc/nginx/sites-available/default
+
+service nginx restart
