@@ -2,5 +2,5 @@
 # This fixes the Apache container to make it return a page containing
 #+ "Hello Holberton" when querying the root of it
 
-sudo sed -i "s/#ServerName www.example.com/ServerName $IP/" /etc/apache2/sites-available/000-default.conf
+#sudo sed -i "s/#ServerName www.example.com/ServerName $IP/" /etc/apache2/sites-available/000-default.conf
 sudo service apache2 start
