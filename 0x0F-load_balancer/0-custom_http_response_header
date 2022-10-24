@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# This configures the web-02 server to be identical to the web-01 server
+
+sudo apt-get -y update
+sudo apt-get -y nginx
+
+sudo ufw allow 'Nginx HTTP'
+sudo chown -R "$USER:$USER" /var/www/html
+sudo chmod -R 755 /var/www
+
+echo 'Hello World!' | sudo tee /var/www/html/index.html
+
+CONFIGDATA="server {
+	listen 80 default_server;
+	add_header X-served-By $HOSTNAME;
+	listen [::]:8 default_server;
+	root var/www/html;
+
+	server_name _;
+
+	location / {
+		try_files \$uri \$uri/ =404;
+	}
+
+	error_page 404 /error-page.html;
+	location = /error-page.html {
+		root /var/www/html;
+		internal;
+	}
+
+	location /redirect_me {
+		return 301 https://www/youtube.com/watch?v=QH2-TGUlwu4;
+	}
+}"
+
+echo "$CONFIGDATA" | sudo tee /var/nginx/sites-enabled/default
+sudo service nginx restart
