@@ -4,4 +4,20 @@
 apt-get -y update && apt-get upgrade
 apt-get instsall software-properties-common
 
-apt-get -y 
+add-apt-repository ppa:vbernat/haproxy-2.6
+apt-get install haproxy=2.6.\*
+
+HAPROXYCONFIG="
+frontend haproxy-main
+	bind *:80
+	mode http
+	default_backend task-servers
+
+backend task_servers
+	balance roundrobin
+	server 35595-web-01 3.239.125.128 check
+	server 35595-web-02 18.204.10.149 check
+	"
+cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
+echo "$HAPROXYCONFIG" >> /etc/haproxy/haproxy.cfg
+service haproxy restart
