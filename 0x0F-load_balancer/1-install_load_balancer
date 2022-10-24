@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# This installs and configure HAproxy on my lb-01 server
+
+apt-get -y update && apt-get upgrade
+apt-get instsall software-properties-common
+
+apt-get -y 
