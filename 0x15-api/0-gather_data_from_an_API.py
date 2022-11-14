@@ -12,7 +12,7 @@ def client_request(data, query_string=None):
     url = "https://jsonplaceholder.typicode.com/"
     url += data
     if query_string is not None:
-        url = url + "?" +query_string[0] + "=" + query_string[1]
+        url = url + "?" + query_string[0] + "=" + query_string[1]
 
     response = requests.get(url)
     response = response.json()
