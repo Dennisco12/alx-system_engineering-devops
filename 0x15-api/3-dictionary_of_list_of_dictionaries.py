@@ -24,7 +24,7 @@ if __name__ == "__main__":
 
     data = {}
     for user in all_users:
-        user_id = user.get('id')
+        user_id = user['id']
         data[user_id] = []
         for task in all_todos:
             data[user_id].append({
