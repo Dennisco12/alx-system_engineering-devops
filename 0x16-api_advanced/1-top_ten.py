@@ -19,5 +19,8 @@ def top_ten(subreddit):
     for k in response.json()['data']['children']:
         my_list.append(k['data']['title'])
 
+    if len(my_list) == 0:
+        print("None")
+        return
     for item in my_list[:10]:
         print(item)
