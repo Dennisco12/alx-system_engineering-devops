@@ -12,7 +12,6 @@ def recurse(subreddit, hot_list=[], n=0):
     response = requests.get(url, headers=header)
 
     if response.status_code != 200:
-        print(None)
         return
 
     my_list = []
