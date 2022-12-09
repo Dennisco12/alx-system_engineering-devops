@@ -1,0 +1,1 @@
+This solves the problem of limited requests. 2000 requests at 100 requests per second were made to our server and 943 of these requests returned failed response. Our task is to fix this problem and make sure there's no failed request.
