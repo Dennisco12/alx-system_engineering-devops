@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# backs up databases and stores in compressed file
+if [ "$1" -eq 0 ]; then
+	SQL_PASS=""
+else
+	SQL_PASS="$1"
+fi
+DT=$(date '+%d-%m-%Y')
+sudo mysqldump -u root --password="$SQL_PASS" --all-databases > backup.sql
+tar -pcvzf "$DT".tar.gz backup.sql
